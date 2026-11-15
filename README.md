@@ -1,31 +1,31 @@
-# JS TASKER PRO - Test Build, Phase 1 (Foundation)
+# JS TASKER PRO - Full Test Build
 
-Plain HTML, CSS and vanilla JS. No build step. Demo data is stored in this browser only (localStorage).
+Plain HTML, CSS and vanilla JS. No build step. Demo data lives in this browser only (localStorage).
+This is the complete test version: every screen works with demo data so you can try the whole flow.
 
 ## Run
-- Phone: unzip, upload the files to a GitHub repo, enable GitHub Pages, open the link.
-- Computer: `python3 -m http.server`, then open http://localhost:8000
-- Install: Chrome menu -> Install app (works over HTTPS or localhost).
+- Phone: unzip, push the files to a GitHub repo, enable GitHub Pages, open the link.
+- Computer: `python3 -m http.server`, open http://localhost:8000
+- Install: browser menu -> Install app.
 
 ## Files
 index.html, manifest.json, sw.js, icons/, css/app.css, js/app.js
 
-## Phase 1 contains
-- The approved test build, re-branded to JS TASKER PRO. User IDs now look like JS-120986 (JS- + 6 digits).
-- Split into index.html + css + js, installable PWA (manifest, offline shell, icons).
-- Hidden admin: no admin button anywhere. On the login screen tap the logo 7 times quickly, then the Admin login box appears.
-  - Admin ID: 01953866541
-  - TEST password: Test@12345 (test build only; the final build uses Firebase Auth and you choose the password in the Firebase Console; it is never stored in code)
-  - Admin auto-logs out after 30 minutes idle.
-- Demo user: demo@jstasker.test / 1234
-- All UI text is English.
+## Logins
+- Demo user: demo@jstasker.test / 1234 (button on the login screen)
+- Admin: no button anywhere. On the login screen tap the logo 7 times quickly. Admin ID 01953866541, TEST password Test@12345 (test build only). Auto logout after the idle minutes set in admin.
+
+## What works
+- Worker: tasks, filters, search, proof submit, history with tabs, levels with rewards, referral (link/code/stats), leaderboard (size from admin), profile edit, verify, live chat, notifications, dark mode.
+- Buyer: create task (live total and afford line), my tasks, edit task, review proofs (approve, reject with reason), Top Job (charged only on confirm), delete request, expiry refund.
+- Wallet: deposit (method bonus, fee, TrxID once, screenshot), withdraw (live BDT, fee, daily limit, password check, reject refunds).
+- Admin: dashboard, deposits, withdraws, users, tasks, categories and prices (color, enable, price tools, percent change), payment methods (per-method bonus, fee, min, max, deposit/withdraw use), settings screen built from a schema (add one row in SCHEMA in js/app.js and a new option appears), audit log, backup/restore, purge.
+- Everything numeric or textual comes from settings and changes live: money rules, fees, expiry, levels, referral, leaderboard, chat window, history days, app name, About, Terms, maintenance, registration on/off, ban message, auto-approve hours.
 
 ## Decisions
-- Test admin password lives in the demo data only because this build has no backend.
-- The Bangla sample text from the reference screenshot is not used anywhere.
-- Category marks (▶ ➤ ♪ ◎) are still text glyphs from the test build; Phase 3 replaces them with inline SVG icons.
+- The test admin password lives in demo data only because there is no backend. The real one is chosen in Firebase Console in the final build.
+- Money is kept as dollars with 3 decimals here; the final build uses integer micro-dollars.
+- Not in the test build (need a backend): real security, Firebase Auth, device limit, rate limits, email verification, push notifications, multi-level referral, disputes, tickets.
 
-## Next phases (one zip each)
-2. Settings-driven app: every price, percent, limit and text editable in admin (money rules, levels, leaderboard, referral, categories with colors, methods with per-method bonus).
-3. Screens matched to the reference screenshots (Create Task, Edit Task, Review, Wallet, History, Invite, Leaderboard, Profile, Live Chat, admin menu).
-4. Final build: Firebase Auth + Firestore, security rules, money logic, deploy guide.
+## Final build (next zip)
+Firebase Auth + Firestore, security rules, money functions, seed script and deploy guide. It needs your Firebase project web config, so it is delivered separately.

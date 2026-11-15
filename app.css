@@ -123,3 +123,4 @@ textarea.inp{min-height:84px;resize:vertical}
 .admgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
 .admgrid .card{padding:12px}
 @media (max-width:360px){.g3{grid-template-columns:1fr 1fr}}
+.ico svg{width:20px;height:20px}.chip svg{width:14px;height:14px}
